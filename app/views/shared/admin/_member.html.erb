@@ -1,0 +1,14 @@
+<div class="card card-primary">
+  <div class="card-header">
+    <span><%= t('.member_info') %></span>
+    <%= link_to 'View', url_for([:admin, member]), class: 'float-right', target: '_blank' %>
+  </div>
+  <div class="card-body">
+    <%= description_for :member do %>
+      <%= item_for member, :email %>
+      <%= item_for member, :sn %>
+      <%= item_for member, :created_at %>
+      <hr class="split">
+    <% end %>
+  </div>
+</div>

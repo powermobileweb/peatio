@@ -1,0 +1,27 @@
+<h3>Deposit details</h3>
+
+<%= form_for @deposit, url: admin_deposit_index_url(currency.code) do |f| %>
+
+  <div class="card-deck">
+    <div class="card">
+      <div class="card-body">
+        <div class="form-group">
+          <label>Amount</label>
+          <%= f.number_field :amount, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <div class="form-group">
+          <label>SN</label>
+          <%= f.text_field :sn, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= f.submit 'Accept', class: 'btn btn-primary btn-lg mt-3' %>
+
+<% end %>

@@ -1,0 +1,42 @@
+<h3><%= t('.search') %></h3>
+<div class="card">
+  <div class="m-4">
+    <%= form_tag admin_members_path, method: :get, class: "form-inline" do |f| %>
+        <%= select_tag :search_field, options_for_select([ \
+          ['E-Mail', 'email'],                             \
+          ['Wallet address', 'wallet_address'],            \
+          ['SN', 'sn']
+        ], @search_field), class: "form-control" %>
+
+        <%= text_field_tag :search_term, @search_term, class: "form-control" %>
+        <%= submit_tag t('.search'), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<h3><%= t('.members') %></h3>
+<div class="card">
+  <%= table_for @members, class: 'table table-bordered table-striped table-condensed' do |t| %>
+    <% t.column :id %>
+    <% t.column :email do |x| %>
+      <code class="text-info">
+        <%= x.email %>
+      </code>
+    <% end %>
+    <% t.column 'SN' do |x| %>
+        <%= x.sn %>
+    <% end %>
+    <% t.column :created_at %>
+    <% t.column 'Disabled? (Web/API)' do |x| %>
+      <% text = x.disabled? ? 'Yes' : 'No' %>
+      <%= link_to text, toggle_admin_member_path(x), remote: true, method: :post, class: 'toggle-web' %>
+      &nbsp;/&nbsp;
+      <% text = x.api_disabled? ? 'Yes' : 'No' %>
+      <%= link_to text, toggle_admin_member_path(x, api: true), remote: true, method: :post, class: 'toggle-api' %>
+    <% end %>
+    <% t.column :actions do |x| %>
+      <%= link_to t('actions.view'), url_for([:admin, x]), target: '_blank' %>
+    <% end %>
+  <% end %>
+</div>
+<%= paginate @members %>

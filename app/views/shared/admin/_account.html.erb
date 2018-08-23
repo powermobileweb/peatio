@@ -1,0 +1,19 @@
+<div class="card card-primary">
+  <div class="card-header">
+    <span><%= t('.account_info') %></span>
+    <span> : </span>
+    <span><%= account.currency.code.upcase %></span>
+  </div>
+  <div class="card-body">
+    <dl class="dl-horizontal">
+      <%= item_for account, :amount %>
+      <%= item_for account, :locked %>
+      <%= item_for account, :balance %>
+      <% if account.currency.coin? %>
+        <%= item_for t('.payment_address') do %>
+          <%= account.payment_address.address %>
+        <% end %>
+      <% end %>
+    </dl>
+  </div>
+</div>

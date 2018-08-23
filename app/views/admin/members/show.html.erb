@@ -1,0 +1,8 @@
+<div class="row row-eq-height">
+  <div class="col-6">
+    <%= render partial: 'shared/admin/member', locals: { member: @member } %>
+  </div>
+</div>
+<div class="row row-eq-height">
+  <%= render partial: 'shared/admin/member_accounts', locals: { member: @member } %>
+</div>
