@@ -1,0 +1,23 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  collation: utf8_general_ci
+  pool: 5
+  host: <%= ENV['DATABASE_HOST'] || '127.0.0.1' %>
+  port: 3306
+  username: <%= ENV['DATABASE_USER'] || 'root' %>
+  password: <%= ENV['DATABASE_PASS'] %>
+
+development:
+  <<: *default
+  database: peatio_development
+
+test:
+  <<: *default
+  database: peatio_test
+
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
+  pool: 10
+  database: <%= ENV.fetch('DATABASE_NAME', 'peatio_production') %>

@@ -1,0 +1,8 @@
+# encoding: UTF-8
+# frozen_string_literal: true
+
+# Load the Rails application.
+require File.expand_path('../application', __FILE__)
+
+# Initialize the Rails application.
+Rails.application.initialize!
